@@ -12,8 +12,8 @@ public class MedicationService {
     private List<Medication> meds = new ArrayList<>();
 
     public Medication getMed(int index){
+        //checks if index is in the meds array and return null if not
         if (index> meds.size())return null;
         return meds.get(index);
     }
-
 }

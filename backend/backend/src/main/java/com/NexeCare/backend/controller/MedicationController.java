@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/medication")
 @RequiredArgsConstructor
 public class MedicationController {
-    private MedicationService service;
-
+    private final MedicationService service;
 
     @GetMapping("{index}")
     public ResponseEntity<Medication> getMed(@PathVariable int index) {
+        //call service method to ge a medication
         Medication med = service.getMed(index);
-        if (med == null) return ResponseEntity.noContent().build();
+        if (med == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(med);
     }
 

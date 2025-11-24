@@ -3,17 +3,19 @@ package com.NexeCare.backend.controller;
 import com.NexeCare.backend.model.TakeRecord;
 import com.NexeCare.backend.model.request.TakeRequest;
 import com.NexeCare.backend.service.TakeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/take")
+@RequiredArgsConstructor
 public class TakeController {
-    private TakeService service;
+    private final TakeService service;
+
 
     @GetMapping("/{index}")
     public ResponseEntity<TakeRecord> getTake(@PathVariable int index) {
@@ -24,9 +26,9 @@ public class TakeController {
 
     @PostMapping
     public ResponseEntity<TakeRecord> createTake(@RequestBody TakeRequest request) {
-        TakeRecord take = new TakeRecord(request.getTreatment_id(), request.getRegisteredBy_id(), LocalDateTime.now(), request.getTakeSuccess(), request.getObservations());
+        TakeRecord take = new TakeRecord(request.getTreatment_id(), request.getRegisteredBy_id(), new Date(), request.getTakeSuccess(), request.getObservations());
         int index = service.registerTake(take);
-        URI location = URI.create("takes/" +index);
+        URI location = URI.create("takes/" + index);
         return ResponseEntity.created(location).body(take);
     }
 }

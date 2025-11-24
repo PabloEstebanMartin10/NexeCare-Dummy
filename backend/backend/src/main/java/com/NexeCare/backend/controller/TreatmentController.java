@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("Treatments")
 @RequiredArgsConstructor
 public class TreatmentController {
-    private TreatmentService service;
+    private final TreatmentService service;
 
     @GetMapping("/{index}")
     public ResponseEntity<Treatment> getTreatment(@PathVariable int index) {
@@ -29,5 +29,4 @@ public class TreatmentController {
         List<Treatment> treatments = service.getAllTreatments();
         return ResponseEntity.ok(treatments);
     }
-
 }

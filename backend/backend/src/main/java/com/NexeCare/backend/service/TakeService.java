@@ -8,6 +8,7 @@ public class TakeService {
     private List<TakeRecord> takes;
 
     public TakeRecord getTake(int index){
+        //check if index is in takes and return null if not
         if (index>takes.size())return null;
         return takes.get(index);
     }
