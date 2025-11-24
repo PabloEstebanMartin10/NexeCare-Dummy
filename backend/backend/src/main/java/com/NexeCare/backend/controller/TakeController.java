@@ -20,10 +20,9 @@ public class TakeController {
 
 
     @GetMapping("/{index}")
-    public ResponseEntity<TakeRecord> getTake(@PathVariable int index) {
-        TakeRecord take = service.getTake(index);
-        if (take == null) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(take);
+    public ResponseEntity<List<TakeRecord>> getTake(@PathVariable int index) {
+        List<TakeRecord> takes = service.getTake(index);
+        return ResponseEntity.ok(takes);
     }
 
     @PostMapping
@@ -32,5 +31,11 @@ public class TakeController {
         int index = service.registerTake(take);
         URI location = URI.create("takes/" + index);
         return ResponseEntity.created(location).body(take);
+    }
+
+    @DeleteMapping("/{id}")
+    private ResponseEntity<TakeRecord> deleteTake(@PathVariable int id) {
+        if (service.deleteTake(id)) return ResponseEntity.ok().build();
+        else return ResponseEntity.notFound().build();
     }
 }

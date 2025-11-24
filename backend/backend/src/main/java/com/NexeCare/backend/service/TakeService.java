@@ -1,19 +1,30 @@
 package com.NexeCare.backend.service;
 
 import com.NexeCare.backend.model.TakeRecord;
+import com.NexeCare.backend.repository.TakeRepository;
 
 import java.util.List;
 
 public class TakeService {
     private List<TakeRecord> takes;
+    private final TakeRepository repository;
 
-    public TakeRecord getTake(int index){
-        //check if index is in takes and return null if not
-        if (index>takes.size())return null;
-        return takes.get(index);
+    public TakeService(TakeRepository repository) {
+        this.repository = repository;
+    }
+
+    public List<TakeRecord> getTake(int id){
+       return repository.findBychildId(id);
     }
     public int registerTake(TakeRecord take){
-        //TODO
-        return takes.size()-1;
+        TakeRecord record  = repository.save(take);
+        return record.getId();
+    }
+
+    public Boolean deleteTake(int id){
+        return repository.findById(id).map(take -> {
+            repository.delete(take);
+            return true;
+        }).orElse(false);
     }
 }
