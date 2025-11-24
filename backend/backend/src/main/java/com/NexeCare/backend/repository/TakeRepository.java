@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface TakeRepository extends JpaRepository<TakeRecord, Integer> {
-    @Query("Select u from Take inner join Treatment on Take.idTreatment = Treatment.id where childId = :childId")
-    List<TakeRecord> findBychildId(@Param("childId") int childId);
+
+    @Query("SELECT t FROM TakeRecord t WHERE t.treatmentId = :treatmentId")
+    List<TakeRecord> findByTreatmentId(@Param("treatmentId") int treatmentId);
 }
+
