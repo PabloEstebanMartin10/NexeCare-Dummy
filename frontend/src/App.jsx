@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 // 5. Importamos sesion y cliente; y el contexto de la sesión
 import { useSession, useSessionContext } from "@supabase/auth-helpers-react";
