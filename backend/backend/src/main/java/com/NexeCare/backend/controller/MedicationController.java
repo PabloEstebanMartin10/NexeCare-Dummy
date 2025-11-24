@@ -15,8 +15,9 @@ public class MedicationController {
 
     @GetMapping("{index}")
     public ResponseEntity<Medication> getMed(@PathVariable int index) {
+        //call service method to ge a medication
         Medication med = service.getMed(index);
-        if (med == null) return ResponseEntity.noContent().build();
+        if (med == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(med);
     }
 
