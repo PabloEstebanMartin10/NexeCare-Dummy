@@ -1,23 +1,53 @@
 package com.NexeCare.backend.service;
 
 import com.NexeCare.backend.model.Treatment;
+import com.NexeCare.backend.repository.TreatmentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TreatmentService {
-    private List<Treatment> treatments;
 
-    public Treatment getTreatment(int index) {
-        //check if index is in treatments and return null if not
-        if (index > treatments.size()) return null;
-        return treatments.get(index);
+    private final TreatmentRepository repository;
+
+    // GET uno
+    public Treatment getTreatment(int id) {
+        return repository.findById(id).orElse(null);
     }
 
+    // GET todos
     public List<Treatment> getAllTreatments() {
-        //returns all the treatments
-        return treatments;
+        return repository.findAll();
+    }
+
+    // POST
+    public Treatment createTreatment(Treatment treatment) {
+        return repository.save(treatment);
+    }
+
+    // PUT
+    public Treatment updateTreatment(int id, Treatment treatment) {
+        return repository.findById(id).map(existing -> {
+
+            existing.setChildId(treatment.getChildId());
+            existing.setMedicationId(treatment.getMedicationId());
+            existing.setStartDate(treatment.getStartDate());
+            existing.setEndDate(treatment.getEndDate());
+            existing.setSpecificDose(treatment.getSpecificDose());
+            existing.setInstructions(treatment.getInstructions());
+
+            return repository.save(existing);
+        }).orElse(null);
+    }
+
+    // DELETE
+    public boolean deleteTreatment(int id) {
+        return repository.findById(id).map(treatment -> {
+            repository.delete(treatment);
+            return true;
+        }).orElse(false);
     }
 }

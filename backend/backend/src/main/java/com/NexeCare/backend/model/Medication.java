@@ -1,35 +1,38 @@
 package com.NexeCare.backend.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.Date;
 
 @Data
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Medication {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name_medication", nullable = false)
+    @Column(name = "name_medication")
     private String nameMedication;
 
-    @Column(name = "dose_unit", nullable = false)
+    @Column(name = "dose_unit")
     private String doseUnit;
 
-    @Column(name = "type", nullable = false)
     private String type;
 
-    @Column(name = "frequency", nullable = false)
     private String frequency;
 
-    @Column(name = "min_stock", nullable = false)
+    @Column(name = "min_stock")
     private int minStock;
 
-    @Column(name = "stock", nullable = false)
     private int stock;
+
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Column(name = "updated_at")
+    private Date updatedAt;
 }

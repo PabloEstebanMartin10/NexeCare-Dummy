@@ -16,26 +16,37 @@ import java.util.List;
 @RequestMapping("/take")
 @RequiredArgsConstructor
 public class TakeController {
+
     private final TakeService service;
 
-
-    @GetMapping("/{index}")
-    public ResponseEntity<List<TakeRecord>> getTake(@PathVariable int index) {
-        List<TakeRecord> takes = service.getTake(index);
-        return ResponseEntity.ok(takes);
+    @GetMapping("/{treatmentId}")
+    public ResponseEntity<List<TakeRecord>> getTake(@PathVariable int treatmentId){
+        return ResponseEntity.ok(service.getTake(treatmentId));
     }
 
     @PostMapping
-    public ResponseEntity<TakeRecord> createTake(@RequestBody TakeRequest request) {
-        TakeRecord take = new TakeRecord(request.getTreatment_id(), request.getRegisteredBy_id(), new Date(), request.getTakeSuccess(), request.getObservations());
-        int index = service.registerTake(take);
-        URI location = URI.create("takes/" + index);
-        return ResponseEntity.created(location).body(take);
+    public ResponseEntity<TakeRecord> createTake(@RequestBody TakeRequest request){
+
+        TakeRecord take = new TakeRecord(
+                0,
+                request.getTreatment_id(),
+                request.getRegisteredBy_id(),
+                new Date(),
+                request.getTakeSuccess(),
+                request.getObservations()
+        );
+
+        TakeRecord saved = service.registerTake(take);
+
+        return ResponseEntity
+                .created(URI.create("/take/" + saved.getId()))
+                .body(saved);
     }
 
     @DeleteMapping("/{id}")
-    private ResponseEntity<TakeRecord> deleteTake(@PathVariable int id) {
+    public ResponseEntity<Void> deleteTake(@PathVariable int id){
         if (service.deleteTake(id)) return ResponseEntity.ok().build();
-        else return ResponseEntity.notFound().build();
+        return ResponseEntity.notFound().build();
     }
 }
+
