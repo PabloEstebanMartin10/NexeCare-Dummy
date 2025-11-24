@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-
+import Home from "./Home.jsx";
 // COMPONENTES
 import { getCalendarEvents } from "./components/getCalendarEvents";
 import { googleSignIn, signOut } from "./components/signInAndOut";
@@ -23,7 +23,6 @@ import MedicationAppointement from "./components/medicationAppointment.jsx";
 import Footer from "./components/Footer.jsx";
 import { createClient } from "@supabase/supabase-js";
 import { Route, Routes } from "react-router-dom";
-import App from "./App.jsx";
 
 // React Router Dom+<Routes>
 <Routes>
