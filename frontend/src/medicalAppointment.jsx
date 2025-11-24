@@ -148,7 +148,13 @@ export default function Medication() {
         <input
           value={newName}
           onChange={(e) => setNewName(e.target.value)}
-          placeholder="Nombre de la medicación"
+          placeholder="Nombre de la cita"
+          style={{ flex: 1, padding: 8 }}
+        />
+        <input
+          value={newName}
+          onChange={(e) => setNewName(e.target.value)}
+          placeholder="dia y hora"
           style={{ flex: 1, padding: 8 }}
         />
         <button
