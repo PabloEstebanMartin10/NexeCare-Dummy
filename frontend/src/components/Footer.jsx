@@ -5,9 +5,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo / Nombre */}
           <div>
-            <h3 className="text-xl font-bold text-white">MiApp Médica</h3>
+            <h3 className="text-xl font-bold text-white">NexeCare</h3>
             <p className="text-gray-400 mt-2 text-sm">
-              Tu salud, organizada en un solo lugar.
+              Simplificando la vida a quien mas lo necesita
             </p>
           </div>
 

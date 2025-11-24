@@ -1,3 +1,4 @@
+// ...existing code...
 import React, { useEffect, useState } from "react";
 
 export default function Medication() {
@@ -108,8 +109,17 @@ export default function Medication() {
     return <div className="text-center py-6">Cargando medicación...</div>;
 
   return (
-    <div className="max-w-xl mx-auto mt-6 p-4 bg-white rounded-xl shadow">
-      <h2 className="text-xl font-bold mb-4">Lista de medicación</h2>
+    <aside
+      className="
+    w-[90%] sm:w-80 md:w-96
+    bg-white rounded-xl shadow-lg p-4 
+    max-h-[72vh] overflow-auto 
+    ml-auto mr-4
+    mt-[120px] 
+  "
+      aria-label="Panel de medicación"
+    >
+      <h2 className="text-lg font-bold mb-3">Lista de medicación</h2>
 
       {/* Formulario */}
       <form onSubmit={addMedication} className="flex gap-3 mb-4">
@@ -122,7 +132,7 @@ export default function Medication() {
         <button
           type="submit"
           disabled={adding || !newName.trim()}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50"
+          className="px-3 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50"
         >
           {adding ? "Añadiendo..." : "Añadir"}
         </button>
@@ -138,7 +148,6 @@ export default function Medication() {
             </div>
 
             <div className="flex gap-2">
-              {/* Botón Tomado */}
               <button
                 onClick={() => toggleTaken(m.id)}
                 className={`px-3 py-2 rounded-lg text-white ${
@@ -148,7 +157,6 @@ export default function Medication() {
                 Tomado
               </button>
 
-              {/* Botón Eliminar */}
               <button
                 onClick={() => deleteMedication(m.id)}
                 className="px-3 py-2 bg-gray-500 text-white rounded-lg"
@@ -159,6 +167,6 @@ export default function Medication() {
           </li>
         ))}
       </ul>
-    </div>
+    </aside>
   );
 }

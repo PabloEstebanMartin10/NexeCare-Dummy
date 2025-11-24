@@ -18,6 +18,9 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import Navbar from "./components/Navbar.jsx";
+import Medication from "./components/medicationList.jsx";
+import MedicationAppointement from "./components/medicationAppointment.jsx";
+import Footer from "./components/Footer.jsx";
 import { createClient } from "@supabase/supabase-js";
 
 // Configuracion de Supabase
@@ -67,6 +70,9 @@ function App() {
   return (
     <>
       <Navbar />
+      <Medication />
+      <MedicationAppointement />
+      <Footer />
     </>
   );
 }

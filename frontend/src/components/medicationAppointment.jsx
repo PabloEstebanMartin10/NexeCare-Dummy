@@ -1,210 +1,125 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function Medication() {
-  const [meds, setMeds] = useState([]);
+export default function MedicationAppointment() {
+  const [appointmentName, setAppointmentName] = useState("");
+  const [appointmentDate, setAppointmentDate] = useState("");
+  const [appointmentTime, setAppointmentTime] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  const [newName, setNewName] = useState("");
-  const [newDate, setNewDate] = useState("");
-  const [newTime, setNewTime] = useState("");
-  const [adding, setAdding] = useState(false);
-
+  // Cargar citas mock al montar el componente
   useEffect(() => {
-    const fetchMeds = async () => {
+    const fetchAppointments = async () => {
       try {
-        const res = await fetch("/api/medications");
-        if (!res.ok) throw new Error("Network response not ok");
-        const data = await res.json();
-        setMeds(data);
-      } catch (e) {
-        console.warn("No se pudo cargar desde la API, usando datos mock:", e);
-        setMeds([
+        // Aquí normalmente harías fetch("/api/appointments")
+        // Por ahora usamos datos mock
+        const data = [
           {
             id: 1,
-            name: "Psicólogo",
-            status: "pendiente",
-            dia: "07-11",
-            hora: "10:00 AM",
+            name: "Cita con el psicólogo",
+            date: "07-11",
+            time: "10:00 AM",
           },
-          {
-            id: 2,
-            name: "Fisioterapeuta",
-            status: "asistido",
-            dia: "10-11",
-            hora: "2:00 PM",
-          },
-          {
-            id: 3,
-            name: "Logopeda",
-            status: "pendiente",
-            dia: "12-11",
-            hora: "4:00 PM",
-          },
-        ]);
-        setError(e.message);
+          { id: 2, name: "Fisioterapia", date: "10-11", time: "2:00 PM" },
+          { id: 3, name: "Logopeda", date: "12-11", time: "4:00 PM" },
+        ];
+        setAppointments(data);
+      } catch (e) {
+        console.warn("No se pudieron cargar las citas:", e);
       } finally {
         setLoading(false);
       }
     };
-
-    fetchMeds();
+    fetchAppointments();
   }, []);
 
-  const toggleTaken = async (id) => {
-    setMeds((prev) =>
-      prev.map((m) =>
-        m.id === id
-          ? { ...m, status: m.status === "asistido" ? "pendiente" : "asistido" }
-          : m
-      )
-    );
-
-    try {
-      await fetch(`/api/medications/${id}/toggle`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      });
-    } catch (e) {
-      console.warn("No se pudo notificar:", e);
-      setMeds((prev) =>
-        prev.map((m) =>
-          m.id === id
-            ? {
-                ...m,
-                status: m.status === "asistido" ? "pendiente" : "asistido",
-              }
-            : m
-        )
-      );
-    }
-  };
-
-  const addMedication = async (e) => {
+  const saveAppointment = (e) => {
     e.preventDefault();
-    if (!newName.trim() || !newDate.trim() || !newTime.trim()) return;
+    if (
+      !appointmentName.trim() ||
+      !appointmentDate.trim() ||
+      !appointmentTime.trim()
+    )
+      return;
 
-    setAdding(true);
+    setSaving(true);
 
-    const tempId = -Date.now();
-    const newMed = {
-      id: tempId,
-      name: newName,
-      status: "pendiente",
-      dia: newDate,
-      hora: newTime,
+    // Creamos cita temporal con id negativo
+    const newAppointment = {
+      id: -Date.now(),
+      name: appointmentName,
+      date: appointmentDate,
+      time: appointmentTime,
     };
 
-    setMeds((prev) => [newMed, ...prev]);
+    // Agregamos al estado local
+    setAppointments((prev) => [newAppointment, ...prev]);
 
-    setNewName("");
-    setNewDate("");
-    setNewTime("");
-
-    try {
-      const res = await fetch("/api/medications", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newMed),
-      });
-      if (!res.ok) throw new Error("Failed to create");
-      const created = await res.json();
-
-      setMeds((prev) => prev.map((m) => (m.id === tempId ? created : m)));
-    } catch (e) {
-      console.warn("No se pudo crear en el servidor:", e);
-    } finally {
-      setAdding(false);
-    }
+    // Limpiamos inputs
+    setAppointmentName("");
+    setAppointmentDate("");
+    setAppointmentTime("");
+    setSaving(false);
   };
-
-  const deleteMedication = async (id) => {
-    const prev = meds.slice();
-    setMeds((p) => p.filter((m) => m.id !== id));
-
-    if (error) return;
-    if (typeof id === "number" && id < 0) return;
-
-    try {
-      const res = await fetch(`/api/medications/${id}`, {
-        method: "DELETE",
-      });
-      if (!res.ok) throw new Error("Delete failed");
-    } catch (e) {
-      console.warn("No se pudo borrar:", e);
-      setMeds(prev);
-    }
-  };
-
-  if (loading) return <div className="text-center py-6">Cargando citas...</div>;
 
   return (
-    <div className="max-w-xl mx-auto mt-6 p-4 bg-white rounded-xl shadow">
-      <h2 className="text-xl font-bold mb-4">Citas Médicas</h2>
+    <aside
+      className="
+        w-[90%] sm:w-80 md:w-96
+        bg-white rounded-xl shadow-lg p-4 
+        mt-[50px]
+        ml-auto mr-4
+      "
+      aria-label="Panel de citas"
+    >
+      <h2 className="text-lg font-bold mb-3">Añadir cita médica</h2>
 
-      {/* FORMULARIO */}
-      <form
-        onSubmit={addMedication}
-        className="flex flex-col md:flex-row gap-3 mb-4"
-      >
+      {/* Formulario */}
+      <form onSubmit={saveAppointment} className="flex flex-col gap-3 mb-4">
         <input
-          value={newName}
-          onChange={(e) => setNewName(e.target.value)}
+          value={appointmentName}
+          onChange={(e) => setAppointmentName(e.target.value)}
           placeholder="Nombre de la cita"
-          className="flex-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+          className="px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300"
         />
         <input
-          value={newDate}
-          onChange={(e) => setNewDate(e.target.value)}
-          placeholder="Día (07-11)"
-          className="flex-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+          value={appointmentDate}
+          onChange={(e) => setAppointmentDate(e.target.value)}
+          placeholder="Fecha (07-11)"
+          className="px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300"
         />
         <input
-          value={newTime}
-          onChange={(e) => setNewTime(e.target.value)}
+          value={appointmentTime}
+          onChange={(e) => setAppointmentTime(e.target.value)}
           placeholder="Hora (10:00 AM)"
-          className="flex-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+          className="px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300"
         />
+
         <button
           type="submit"
-          disabled={adding}
+          disabled={saving}
           className="px-4 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50"
         >
-          {adding ? "Añadiendo..." : "Añadir"}
+          {saving ? "Guardando..." : "Guardar cita"}
         </button>
       </form>
 
-      {/* LISTA */}
-      <ul className="divide-y">
-        {meds.map((m) => (
-          <li key={m.id} className="flex items-center justify-between py-4">
-            <div>
-              <strong className="font-medium">{m.name}</strong>
-              <div className="text-sm text-gray-600">
-                Fecha: {m.dia} — Hora: {m.hora}
-              </div>
-            </div>
-
-            <div className="flex gap-2">
-              <button
-                onClick={() => toggleTaken(m.id)}
-                className={`px-3 py-2 rounded-lg text-white ${
-                  m.status === "asistido" ? "bg-green-600" : "bg-red-600"
-                }`}
-              >
-                Asistido
-              </button>
-
-              <button
-                onClick={() => deleteMedication(m.id)}
-                className="px-3 py-2 bg-gray-500 text-white rounded-lg"
-              >
-                Eliminar
-              </button>
-            </div>
-          </li>
+      {/* Lista de citas */}
+      <div className="divide-y">
+        {loading && <p className="text-gray-500">Cargando citas...</p>}
+        {!loading && appointments.length === 0 && (
+          <p className="text-gray-500">No hay citas registradas.</p>
+        )}
+        {appointments.map((a) => (
+          <div key={a.id} className="py-2">
+            <strong className="block">{a.name}</strong>
+            <span className="text-sm text-gray-500">
+              Fecha: {a.date} — Hora: {a.time}
+            </span>
+          </div>
         ))}
-      </ul>
-    </div>
+      </div>
+    </aside>
   );
 }

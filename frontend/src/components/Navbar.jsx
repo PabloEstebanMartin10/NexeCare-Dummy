@@ -1,10 +1,15 @@
-import { IconHome, IconCalendar, IconUser, IconMessage } from "@tabler/icons-react";
+import {
+  IconHome,
+  IconCalendar,
+  IconUser,
+  IconMessage,
+} from "@tabler/icons-react";
 
 export default function Navbar() {
   return (
     <>
       {/* Navbar container */}
-      <div className="h-auto w-full border-b-2 px-5 pb-5 pt-2 border-neutral-300 fixed flex items-center bg-white shadow-md z-9999">
+      <div className="h-auto w-full border-b-2 px-5 pb-5 pt-2 border-neutral-300 fixed flex items-center bg-white shadow-md z-9999 top-0">
         {/* Logo IZQ */}
         <div className="logo_container ml-7">
           <h2 className="font-bold">
@@ -23,25 +28,37 @@ export default function Navbar() {
             href="#"
             className=" transform transition-transform duration-200 hover:scale-110 hover:text-blue-400 flex flex-nowrap"
           >
-            Home <span className="pl-3"><IconHome/></span>
+            Home{" "}
+            <span className="pl-3">
+              <IconHome />
+            </span>
           </a>
           <a
             href="#"
             className=" transform transition-transform duration-200 hover:scale-110 hover:text-blue-400 flex flex-nowrap"
           >
-            Agenda  <span className="pl-3"><IconCalendar /></span>
+            Agenda{" "}
+            <span className="pl-3">
+              <IconCalendar />
+            </span>
           </a>
           <a
             href="#"
             className=" transform transition-transform duration-200 hover:scale-110 hover:text-blue-400 flex flex-nowrap"
           >
-            Chat  <span className="pl-3"><IconMessage /></span>
+            Chat{" "}
+            <span className="pl-3">
+              <IconMessage />
+            </span>
           </a>
           <a
             href="#"
             className="mr-10 transform transition-transform duration-200 hover:scale-110 hover:text-blue-400 flex flex-nowrap"
           >
-            Iniciar Sesión <span className="pl-3"><IconUser/></span>
+            Iniciar Sesión{" "}
+            <span className="pl-3">
+              <IconUser />
+            </span>
           </a>
         </div>
       </div>
