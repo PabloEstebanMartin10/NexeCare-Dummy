@@ -6,11 +6,12 @@ import {
 } from "@tabler/icons-react";
 import { googleSignIn } from "../components/signInAndOut";
 
+
 export default function Navbar() {
   return (
     <>
       {/* Navbar container */}
-      <div className="h-auto w-full border-b-2 px-5 pb-5 pt-2 border-neutral-300 fixed flex items-center bg-white shadow-md z-9999">
+      <div className="h-auto w-full border-b-2 px-5 pb-5 pt-2 border-neutral-300 fixed flex items-center bg-white shadow-md z-9999 top-0">
         {/* Logo IZQ */}
         <div className="logo_container ml-7">
           <h2 className="font-bold">
