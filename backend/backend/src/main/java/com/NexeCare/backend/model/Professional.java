@@ -17,7 +17,10 @@ public class Professional {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String lastName;
-    private String position;
+    private String surname;
+    private String phone;
     private String email;
+    private String address;
+    private String position;
+    private String img_profile;
 }

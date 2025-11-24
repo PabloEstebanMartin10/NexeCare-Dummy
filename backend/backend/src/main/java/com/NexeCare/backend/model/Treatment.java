@@ -19,10 +19,10 @@ public class Treatment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int child_id;
-    private int medication_id;
+    private int id_child;
+    private int id_medication;
     private Date start_date;
     private Date end_date;
-    private float dose;
+    private int specific_dose;
     private String instructions;
 }
