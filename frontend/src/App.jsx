@@ -15,8 +15,6 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import Navbar from "./components/Navbar.jsx";
 import { createClient } from "@supabase/supabase-js";
-import Medication from "./components/medicationList.jsx";
-import MedicationAppointment from "./components/medicationAppointment.jsx";
 
 // ✅ IMPORTANTE: no hay que importar ningún CSS desde @fullcalendar/core ni daygrid ni timegrid
 // FullCalendar ya incluye los estilos por defecto para React
@@ -156,8 +154,6 @@ function App() {
   return (
     <>
       <Navbar />
-      <Medication />
-      <MedicationAppointment />
     </>
   );
 }
