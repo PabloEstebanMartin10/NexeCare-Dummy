@@ -16,6 +16,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TakeRecord {
+
+    public TakeRecord(int treatment_id, int registeredBy_id, LocalDateTime dateTime, Boolean takeSuccess, String observations) {
+        this.treatment_id = treatment_id;
+        this.registeredBy_id = registeredBy_id;
+        this.dateTime = dateTime;
+        this.takeSuccess = takeSuccess;
+        this.observations = observations;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
