@@ -22,7 +22,9 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
 import { createClient } from "@supabase/supabase-js";
+
 
 // Configuracion de Supabase
 const SUPABASE_URL = "https://tmhxuevqpihrsfiaiiaw.supabase.co/";
@@ -132,11 +134,14 @@ function App() {
           </p>
         </div>
       </div>
-      <div className="text-center italic text-xl font-light py-10 px-90 bg-neutral-100">
+
+      <div className="text-center italic text-xl font-light py-10 px-90 bg-neutral-100 mb-[-40px]">
         “Gracias a nuestra tecnología intuitiva, los padres y cuidadores pueden
         gestionar con seguridad y eficiencia las rutinas médicas, reduciendo
         errores y ganando tranquilidad.”
       </div>
+
+      <Footer/>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-
+import Home from "./Home.jsx";
 // COMPONENTES
 import { getCalendarEvents } from "./components/getCalendarEvents";
 import { googleSignIn, signOut } from "./components/signInAndOut";
@@ -22,6 +22,13 @@ import Medication from "./components/medicationList.jsx";
 import MedicationAppointement from "./components/medicationAppointment.jsx";
 import Footer from "./components/Footer.jsx";
 import { createClient } from "@supabase/supabase-js";
+import { Route, Routes } from "react-router-dom";
+
+// React Router Dom+<Routes>
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/agenda" element={<App />} />
+</Routes>;
 
 // Configuracion de Supabase
 const SUPABASE_URL = "https://tmhxuevqpihrsfiaiiaw.supabase.co/";
