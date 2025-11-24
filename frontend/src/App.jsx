@@ -3,10 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 // 5. Importamos sesion y cliente; y el contexto de la sesión
-import {
-  useSession,
-  useSessionContext,
-} from "@supabase/auth-helpers-react";
+import { useSession, useSessionContext } from "@supabase/auth-helpers-react";
 
 // 13. Importamos DateTimePicker y useState, para seleccionar fecha y hora
 import DateTimePicker from "react-datetime-picker";
@@ -20,15 +17,18 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import Navbar from "./components/Navbar.jsx";
 import { createClient } from "@supabase/supabase-js";
+import Medication from "./components/medicationList.jsx";
+import MedicationAppointment from "./components/medicationAppointment.jsx";
 
 // ✅ IMPORTANTE: no hay que importar ningún CSS desde @fullcalendar/core ni daygrid ni timegrid
 // FullCalendar ya incluye los estilos por defecto para React
 
 const SUPABASE_URL = "https://tmhxuevqpihrsfiaiiaw.supabase.co/";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRtaHh1ZXZxcGlocnNmaWFpaWF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM1OTYzNTMsImV4cCI6MjA3OTE3MjM1M30.tQUtE5ATLgWlg3ewBM5fYjvPzpdijgXubcKp7lLHHW0";
+const SUPABASE_ANON_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRtaHh1ZXZxcGlocnNmaWFpaWF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM1OTYzNTMsImV4cCI6MjA3OTE3MjM1M30.tQUtE5ATLgWlg3ewBM5fYjvPzpdijgXubcKp7lLHHW0";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-  auth: { autoRefreshToken: false }
+  auth: { autoRefreshToken: false },
 });
 
 function App() {
@@ -157,8 +157,9 @@ function App() {
 
   return (
     <>
-      <Navbar/>
-
+      <Navbar />
+      <Medication />
+      <MedicationAppointment />
     </>
   );
 }
