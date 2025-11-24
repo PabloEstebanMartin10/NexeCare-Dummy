@@ -22,6 +22,14 @@ import Medication from "./components/medicationList.jsx";
 import MedicationAppointement from "./components/medicationAppointment.jsx";
 import Footer from "./components/Footer.jsx";
 import { createClient } from "@supabase/supabase-js";
+import { Route, Routes } from "react-router-dom";
+import App from "./App.jsx";
+
+// React Router Dom+<Routes>
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/agenda" element={<App />} />
+</Routes>;
 
 // Configuracion de Supabase
 const SUPABASE_URL = "https://tmhxuevqpihrsfiaiiaw.supabase.co/";

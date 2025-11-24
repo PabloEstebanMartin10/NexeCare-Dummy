@@ -25,6 +25,7 @@ import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import { createClient } from "@supabase/supabase-js";
 
+
 // Configuracion de Supabase
 const SUPABASE_URL = "https://tmhxuevqpihrsfiaiiaw.supabase.co/";
 const SUPABASE_ANON_KEY =
