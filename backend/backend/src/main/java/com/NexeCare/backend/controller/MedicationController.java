@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/medication")
 @RequiredArgsConstructor
 public class MedicationController {
-    private MedicationService service;
+    private final MedicationService service;
 
 
     @GetMapping("{index}")
