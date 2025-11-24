@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class MedicationController {
     private final MedicationService service;
 
+
     @GetMapping("{index}")
     public ResponseEntity<Medication> getMed(@PathVariable int index) {
         //call service method to ge a medication
