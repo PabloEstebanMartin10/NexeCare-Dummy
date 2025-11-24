@@ -17,11 +17,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class TakeRecord {
 
-    public TakeRecord(int treatment_id, int registeredBy_id, LocalDateTime dateTime, Boolean takeSuccess, String observations) {
-        this.treatment_id = treatment_id;
-        this.registeredBy_id = registeredBy_id;
-        this.dateTime = dateTime;
-        this.takeSuccess = takeSuccess;
+    public TakeRecord(int id_treatment, int id_registrator, Date date, Boolean take_success, String observations) {
+        this.id_treatment = id_treatment;
+        this.id_registrator = id_registrator;
+        this.date = date;
+        this.take_success = take_success;
         this.observations = observations;
     }
 
