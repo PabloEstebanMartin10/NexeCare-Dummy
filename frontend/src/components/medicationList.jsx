@@ -1,4 +1,3 @@
-// ...existing code...
 import React, { useEffect, useState } from "react";
 
 export default function Medication() {
@@ -111,10 +110,10 @@ export default function Medication() {
   return (
     <aside
       className="
-    w-[90%] sm:w-80 md:w-96
-    bg-white rounded-xl shadow-lg p-4 
-    ml-auto mr-4
-  "
+        w-[90%] sm:w-80 md:w-96
+        bg-white rounded-xl shadow-lg p-4 
+        ml-auto mr-4
+      "
       aria-label="Panel de medicación"
     >
       <h2 className="text-lg font-bold mb-3">Lista de medicación</h2>
@@ -142,7 +141,6 @@ export default function Medication() {
           <li key={m.id} className="flex items-center justify-between py-3">
             <div>
               <strong className="font-medium">{m.name}</strong>
-              <div className="text-sm text-gray-500">Estado: {m.status}</div>
             </div>
 
             <div className="flex gap-2">
@@ -152,7 +150,7 @@ export default function Medication() {
                   m.status === "tomado" ? "bg-green-600" : "bg-red-600"
                 }`}
               >
-                Tomado
+                {m.status === "tomado" ? "Tomado" : "No tomado"}
               </button>
 
               <button
