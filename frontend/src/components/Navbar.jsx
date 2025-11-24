@@ -4,6 +4,8 @@ import {
   IconUser,
   IconMessage,
 } from "@tabler/icons-react";
+import { googleSignIn } from "../components/signInAndOut";
+
 
 export default function Navbar() {
   return (
@@ -53,6 +55,7 @@ export default function Navbar() {
           </a>
           <a
             href="#"
+            onClick={googleSignIn}
             className="mr-10 transform transition-transform duration-200 hover:scale-110 hover:text-blue-400 flex flex-nowrap"
           >
             Iniciar Sesión{" "}

@@ -1,26 +1,30 @@
 package com.NexeCare.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
-@Entity
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 public class TakeRecord {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int treatment_id;
-    private int registeredBy_id;
-    private LocalDateTime dateTime;
+
+    @Column(name = "id_treatment")
+    private int treatmentId;
+
+    @Column(name = "id_registrator")
+    private int registratorId;
+
+    private Date date;
+
+    @Column(name = "take_success")
     private Boolean takeSuccess;
+
     private String observations;
 }

@@ -1,14 +1,8 @@
 package com.NexeCare.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -16,13 +10,25 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Treatment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int child_id;
-    private int medication_id;
-    private Date start_date;
-    private Date end_date;
-    private float dose;
+
+    @Column(name = "id_child")
+    private int childId;
+
+    @Column(name = "id_medication")
+    private int medicationId;
+
+    @Column(name = "start_date")
+    private Date startDate;
+
+    @Column(name = "end_date")
+    private Date endDate;
+
+    @Column(name = "specific_dose")
+    private int specificDose;
+
     private String instructions;
 }
