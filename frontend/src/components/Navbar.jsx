@@ -1,4 +1,10 @@
-import { IconHome, IconCalendar, IconUser, IconMessage } from "@tabler/icons-react";
+import {
+  IconHome,
+  IconCalendar,
+  IconUser,
+  IconMessage,
+} from "@tabler/icons-react";
+import { googleSignIn } from "../components/signInAndOut";
 
 export default function Navbar() {
   return (
@@ -23,25 +29,38 @@ export default function Navbar() {
             href="#"
             className=" transform transition-transform duration-200 hover:scale-110 hover:text-blue-400 flex flex-nowrap"
           >
-            Home <span className="pl-3"><IconHome/></span>
+            Home{" "}
+            <span className="pl-3">
+              <IconHome />
+            </span>
           </a>
           <a
             href="#"
             className=" transform transition-transform duration-200 hover:scale-110 hover:text-blue-400 flex flex-nowrap"
           >
-            Agenda  <span className="pl-3"><IconCalendar /></span>
+            Agenda{" "}
+            <span className="pl-3">
+              <IconCalendar />
+            </span>
           </a>
           <a
             href="#"
             className=" transform transition-transform duration-200 hover:scale-110 hover:text-blue-400 flex flex-nowrap"
           >
-            Chat  <span className="pl-3"><IconMessage /></span>
+            Chat{" "}
+            <span className="pl-3">
+              <IconMessage />
+            </span>
           </a>
           <a
             href="#"
+            onClick={googleSignIn}
             className="mr-10 transform transition-transform duration-200 hover:scale-110 hover:text-blue-400 flex flex-nowrap"
           >
-            Iniciar Sesión <span className="pl-3"><IconUser/></span>
+            Iniciar Sesión{" "}
+            <span className="pl-3">
+              <IconUser />
+            </span>
           </a>
         </div>
       </div>
