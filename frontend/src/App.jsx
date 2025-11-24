@@ -70,13 +70,31 @@ function App() {
   return (
     <>
       <Navbar />
-      <Medication />
-      <MedicationAppointement />
+
+      {/* Contenedor principal: layout de dos columnas */}
+      <div className="flex gap-4 mt-[140px] px-4">
+        {/* Columna izquierda: calendario */}
+        <div className="flex-2 bg-gray-50 rounded-xl shadow p-4">
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            initialView="dayGridMonth"
+            events={events}
+            editable={true}
+            selectable={true}
+            height="auto"
+          />
+        </div>
+
+        {/* Columna derecha: medicación + citas */}
+        <div className="flex flex-col gap-4 w-[360px]">
+          <Medication />
+          <MedicationAppointement />
+        </div>
+      </div>
       <Footer />
     </>
   );
 }
-
 export default App;
 
 // HAY QUE ACTUALIZAR LA PAGINA FORZOSAMENTE O ALGO SIMILAR PARA QUE EL CALENDARIO SE ACTUALICE AL CREAR EL EVENTO

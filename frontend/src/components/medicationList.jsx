@@ -113,9 +113,7 @@ export default function Medication() {
       className="
     w-[90%] sm:w-80 md:w-96
     bg-white rounded-xl shadow-lg p-4 
-    max-h-[72vh] overflow-auto 
     ml-auto mr-4
-    mt-[120px] 
   "
       aria-label="Panel de medicación"
     >
