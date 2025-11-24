@@ -50,15 +50,16 @@ public class MedicationService {
      */
     public Medication updateMed(int id, Medication medication) {
         return repository.findById(id).map(existingMed -> {
-            existingMed.setName_medication(medication.getName_medication());
-            existingMed.setDose_unit(medication.getDose_unit());
+            existingMed.setNameMedication(medication.getNameMedication());
+            existingMed.setDoseUnit(medication.getDoseUnit());
             existingMed.setType(medication.getType());
-            existingMed.setFrecuency(medication.getFrecuency());
-            existingMed.setMin_stock(medication.getMin_stock());
+            existingMed.setFrequency(medication.getFrequency());
+            existingMed.setMinStock(medication.getMinStock());
             existingMed.setStock(medication.getStock());
             return repository.save(existingMed);
         }).orElse(null);
     }
+
 
     /**
      * Elimina un medicamento por su ID

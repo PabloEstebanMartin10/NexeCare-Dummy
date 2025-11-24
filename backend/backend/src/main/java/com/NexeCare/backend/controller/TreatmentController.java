@@ -17,6 +17,7 @@ import java.util.List;
 public class TreatmentController {
     private final TreatmentService service;
 
+    // Obtener un tratamiento
     @GetMapping("/{index}")
     public ResponseEntity<Treatment> getTreatment(@PathVariable int index) {
         Treatment treatment = service.getTreatment(index);
@@ -24,9 +25,13 @@ public class TreatmentController {
         return ResponseEntity.ok(treatment);
     }
 
-    @GetMapping("/getall")
+    // Obtener todos los tratamientos
+    @GetMapping
     public ResponseEntity<List<Treatment>> getAllTreatments() {
         List<Treatment> treatments = service.getAllTreatments();
         return ResponseEntity.ok(treatments);
     }
+
+
+
 }
