@@ -8,6 +8,6 @@ import java.io.Serializable;
 @Data
 @Embeddable
 public class Tutor_Relation_Id implements Serializable {
-    private int child_id;
-    private int tutor_id;
+    private int id_child;
+    private int id_tutor;
 }

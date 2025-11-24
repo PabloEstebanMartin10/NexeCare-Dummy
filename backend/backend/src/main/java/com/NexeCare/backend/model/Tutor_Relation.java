@@ -14,5 +14,5 @@ public class Tutor_Relation {
     @EmbeddedId
     private Tutor_Relation_Id id;
     private String relation_type;
-    private Boolean emergency_contact;
+    private Boolean main_contact;
 }

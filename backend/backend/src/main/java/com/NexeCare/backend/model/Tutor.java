@@ -17,8 +17,9 @@ public class Tutor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String lastName;
-    private String tlf;
+    private String surname;
+    private String phone;
     private String email;
-    private String direction;
+    private String address;
+    private String img_profile;
 }

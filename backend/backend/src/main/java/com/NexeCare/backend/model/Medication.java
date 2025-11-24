@@ -16,10 +16,10 @@ public class Medication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nombre;
+    private String name_medication;
     private String dose_unit;
     private String type;
     private String frecuency;
-    private int minStock;
+    private int min_stock;
     private int stock;
 }
