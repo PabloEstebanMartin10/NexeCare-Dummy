@@ -1,4 +1,4 @@
-import { IconHome, IconCalendar, IconUser } from "@tabler/icons-react";
+import { IconHome, IconCalendar, IconUser, IconMessage } from "@tabler/icons-react";
 
 export default function Navbar() {
   return (
@@ -30,6 +30,12 @@ export default function Navbar() {
             className=" transform transition-transform duration-200 hover:scale-110 hover:text-blue-400 flex flex-nowrap"
           >
             Agenda  <span className="pl-3"><IconCalendar /></span>
+          </a>
+          <a
+            href="#"
+            className=" transform transition-transform duration-200 hover:scale-110 hover:text-blue-400 flex flex-nowrap"
+          >
+            Chat  <span className="pl-3"><IconMessage /></span>
           </a>
           <a
             href="#"
