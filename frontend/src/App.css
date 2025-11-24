@@ -1,42 +1,54 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.custom-datetime-picker {
+  width: 100% !important;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.custom-datetime-picker .react-datetime-picker__wrapper {
+  border: 1px solid #d1d5db !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem !important;
+  width: 100% !important;
+  font-size: 0.875rem !important;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.custom-datetime-picker .react-datetime-picker__inputGroup {
+  min-width: auto !important;
+  flex-grow: 1 !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.custom-datetime-picker .react-datetime-picker__inputGroup__input {
+  min-width: 0 !important;
+  padding: 0 2px !important;
 }
 
-.card {
-  padding: 2em;
+.custom-datetime-picker .react-datetime-picker__button {
+  padding: 0 4px !important;
 }
 
-.read-the-docs {
-  color: #888;
+.custom-datetime-picker .react-datetime-picker__calendar {
+  width: 300px !important;
+  z-index: 1000 !important;
+}
+
+.custom-datetime-picker .react-datetime-picker__clock {
+  width: 200px !important;
+  z-index: 1000 !important;
+}
+
+/* Asegurar que los números sean visibles */
+.react-calendar {
+  font-size: 14px !important;
+}
+
+.react-calendar__tile {
+  padding: 8px !important;
+}
+
+.react-clock {
+  width: 150px !important;
+  height: 150px !important;
+}
+
+.react-clock__face {
+  width: 100% !important;
+  height: 100% !important;
 }
