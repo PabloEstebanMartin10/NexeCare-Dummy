@@ -23,7 +23,7 @@ export default function Navbar() {
           <span className="text-gray-600 text-6xl">Care</span>
         </h2>
         <h3 className="text-xs text-neutral-400 font-light">
-          <i>Simplificando la vida a quien más lo necesitan.</i>
+          <i>Simplificando la vida a quiénes más lo necesitan.</i>
         </h3>
       </div>
 
